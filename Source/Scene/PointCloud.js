@@ -1224,6 +1224,8 @@ define([
                     var decodedNormals = defined(result.NORMAL) ? result.NORMAL.array : undefined;
                     var decodedBatchIds = defined(result.BATCH_ID) ? result.BATCH_ID.array : undefined;
                     if (defined(decodedPositions) && pointCloud._isQuantizedDraco) {
+                        // Draco quantization range == quantized volume scale - size in meters of the quantized volume
+                        // Internal quantized range is the range of values of the quantized data, e.g. 255 for 8-bit, 1023 for 10-bit, etc
                         var quantization = result.POSITION.data.quantization;
                         var range = quantization.range;
                         pointCloud._quantizedVolumeScale = Cartesian3.fromElements(range, range, range);
