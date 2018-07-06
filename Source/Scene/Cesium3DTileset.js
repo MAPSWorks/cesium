@@ -1889,6 +1889,18 @@ define([
         }
     };
 
+    Cesium3DTileset.prototype.pickPosition = function(frameState) {
+        var statistics = this._statistics;
+        statistics.clear();
+        Cesium3DTilesetTraversal.selectTiles(this, frameState);
+        var selectedTiles = this._selectedTiles;
+        var selectedLength = selectedTiles.length;
+        for (var i = 0; i < selectedLength; ++i) {
+            var tile = selectedTiles[i];
+            tile.update(this, frameState);
+        }
+    };
+
     /**
      * Returns true if this object was destroyed; otherwise, false.
      * <br /><br />
